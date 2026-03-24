@@ -74,7 +74,7 @@ var restaurants = [
 var pubs = [
     { name: "Mitrovski", lat: 49.1881367, lon: 16.5888422, url: "www.mitrovski.cz" },
     { name: "Pivovarská Mendlák s.r.o.", lat: 49.1909661, lon: 16.5927697, url: "https://www.pivovarska-starobrno.cz" },
-    { name: "U všech svatých", lat: 49.1887736, lon: 16.5975906, url: "www.facebook.com/uvsechsvatych", desc: "Tip from locals: Try the cherry liqueur with chili" },
+    { name: "U všech svatých", lat: 49.1887736, lon: 16.5975906, url: "www.facebook.com/uvsechsvatych", desc: "Try the cherry liqueur with chili" },
     { name: "Immigrant", lat: 49.2031617, lon: 16.5968136, url: "https://www.theimmigrant.cz/", desc: "When you feel like having a Guinness" },
     { name: "Na dobré cestě", lat: 49.2028956, lon: 16.5984131, url: "http://jsmenadobreceste.cz/", desc: "Pub with atmosphere" },
 ]
@@ -126,7 +126,7 @@ restaurants.forEach(function (restaurant) {
     if (restaurant.desc === undefined) {
         marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a>`);
     } else {
-        marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a><br>Náš tip: ${restaurant.desc}`);
+        marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a><br>Tip from locals:: ${restaurant.desc}`);
     };
     marker.addTo(restaurantsLayer);
 });
@@ -137,7 +137,7 @@ cafes.forEach(function (cafe) {
     if (cafe.desc === undefined) {
         marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a>`);
     } else {
-        marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a><br>Náš tip: ${cafe.desc}`);
+        marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a><br>Tip from locals:: ${cafe.desc}`);
     };
     marker.addTo(cafesLayer);
 });
@@ -148,7 +148,7 @@ pubs.forEach(function (pub) {
     if (pub.desc === undefined) {
         marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a>`);
     } else {
-        marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a><br>Náš tip: ${pub.desc}`);
+        marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a><br>Tip from locals:: ${pub.desc}`);
     };
     marker.addTo(pubsLayer);
 });
