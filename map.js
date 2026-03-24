@@ -126,7 +126,7 @@ restaurants.forEach(function (restaurant) {
     if (restaurant.desc === undefined) {
         marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a>`);
     } else {
-        marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a><br>Tip from locals:: ${restaurant.desc}`);
+        marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a><br>Tip from locals: ${restaurant.desc}`);
     };
     marker.addTo(restaurantsLayer);
 });
@@ -137,7 +137,7 @@ cafes.forEach(function (cafe) {
     if (cafe.desc === undefined) {
         marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a>`);
     } else {
-        marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a><br>Tip from locals:: ${cafe.desc}`);
+        marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a><br>Tip from locals: ${cafe.desc}`);
     };
     marker.addTo(cafesLayer);
 });
@@ -148,7 +148,7 @@ pubs.forEach(function (pub) {
     if (pub.desc === undefined) {
         marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a>`);
     } else {
-        marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a><br>Tip from locals:: ${pub.desc}`);
+        marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a><br>Tip from locals: ${pub.desc}`);
     };
     marker.addTo(pubsLayer);
 });
