@@ -6,8 +6,14 @@ map.zoomControl.setPosition('topleft');
 L.control.scale({ imperial: false, maxwidth: 200 }).addTo(map);
 
 // Background layer
+/*
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+*/
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap & CARTO'
 }).addTo(map);
 
 // Create layer groups for different categories
@@ -173,7 +179,7 @@ if (activeLayers.includes("cafes")) cafesLayer.addTo(map);
 
 // Layer control
 var overlayMaps = {
-    "ConferenceVenues": venueLayer,
+    "Conference Venues": venueLayer,
     "Hotels": hotelsLayer,
     "Restaurants": restaurantsLayer,
     "Pubs": pubsLayer,
