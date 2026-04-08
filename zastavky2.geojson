@@ -1,0 +1,17 @@
+{
+"type": "FeatureCollection",
+"name": "zastavky2",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "12", "name": "Nerudova" }, "geometry": { "type": "Point", "coordinates": [ 16.595086774953156, 49.206006979587315 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "12", "name": "Nerudova" }, "geometry": { "type": "Point", "coordinates": [ 16.595743392211368, 49.206548377332503 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "25/26", "name": "Konečného nám." }, "geometry": { "type": "Point", "coordinates": [ 16.595707700150932, 49.204847522090965 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "25/26", "name": "Konečného nám." }, "geometry": { "type": "Point", "coordinates": [ 16.595869370283829, 49.205026886171161 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "12", "name": "Konečného nám." }, "geometry": { "type": "Point", "coordinates": [ 16.595483016758465, 49.204486295184296 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "12", "name": "Konečného nám." }, "geometry": { "type": "Point", "coordinates": [ 16.596019848401784, 49.203997641225349 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "12", "name": "Hlavní nádraží" }, "geometry": { "type": "Point", "coordinates": [ 16.611840344722058, 49.191205165538499 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "25/26", "name": "Mendlovo nám." }, "geometry": { "type": "Point", "coordinates": [ 16.593107231386746, 49.190439666366601 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "25/26", "name": "Mendlovo nám." }, "geometry": { "type": "Point", "coordinates": [ 16.593717174182988, 49.18994909949771 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "linka": 0, "linka_c": "12", "name": "Hlavní nádraží" }, "geometry": { "type": "Point", "coordinates": [ 16.612588083348658, 49.191379789964678 ] } }
+]
+}
