@@ -1,35 +1,37 @@
 #map {
-  position: absolute;
-  background-color: white;
-  top: 0;
-  bottom: 0;
-  width: 99%;
+    position: absolute;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    width: 99%;
 }
 
 .leaflet-left .leaflet-control-scale {
-	display: inline-block;
-	float: none;
+    display: inline-block;
+    float: none;
 }
 
 .leaflet-control-scale {
-	margin-top: 3.4em;
+    margin-top: 3.4em;
 }
 
 path.leaflet-interactive:focus {
     outline: none;
 }
 
-.leaflet-popup-content
-{
-    text-align: center;
+/* Target the wrapper (the bubble) */
+.transparent-popup .leaflet-popup-content-wrapper {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    /* 0.8 is your 80% opacity */
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
 }
 
 .info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
 

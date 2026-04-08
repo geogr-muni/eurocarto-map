@@ -23,11 +23,13 @@ var restaurantsLayer = L.layerGroup();
 var cafesLayer = L.layerGroup();
 var pubsLayer = L.layerGroup();
 var transportLayer = L.layerGroup();
+var sightseeingLayer = L.layerGroup();
 
 // Data venues
 var venues = [
     { name: "Conference Venue", lat: 49.2035750, lon: 16.5976983 },
-    { name: "Workshops", lat: 49.2087328, lon: 16.5944419 },
+    { name: "Workshops", lat: 49.2041900, lon: 16.5980900 },
+    { name: "Workshops", lat: 49.2049144, lon: 16.5972925 },
     { name: "Welcome Reception", lat: 49.2082144, lon: 16.5922825 },
     { name: "Gala Dinner", lat: 49.1910856, lon: 16.5934833 }
 ];
@@ -56,6 +58,13 @@ var transport = [
     { name: "Mendlovo náměstí (trolleybus)", lat: 49.1898614, lon: 16.5931872, details: "-> Konečného náměstí: 25, 26" },
     { name: "Grand Hotel (bus long-distance)", lat: 49.1935158, lon: 16.6144772 },
     { name: "Zvonařka (bus long-distance)", lat: 49.1858217, lon: 16.6167317 },
+]
+
+// Data sightseeing
+var sightseeing = [
+    { name: "Špilberk castle", lat: 49.1944442, lon: 16.5993594, url: "https://podzemibrno.cz/en/mista/hrad-spilberk/" },
+    { name: "Ossuary at St. James' church", lat: 49.1963336, lon: 16.6080114, url: "https://podzemibrno.cz/en/mista/kostnice-u-sv-jakuba/" },
+    { name: "Water tanks", lat: 49.1957067, lon: 16.5913517, url: "https://podzemibrno.cz/en/mista/vodojemy-zluty-kopec/" },
 ]
 
 // Data restaurants
@@ -101,81 +110,82 @@ function createAwesomeMarker(icon, markerColor) {
     });
 }
 
-// Add conference venues
+// Helper to build content string
+function buildContent(item) {
+    var content = `<b>${item.name}</b>`;
+    if (item.url) {
+        // Ensure URL has http if missing for the href
+        var link = item.url.startsWith('http') ? item.url : `https://${item.url}`;
+        content += `<br><a href='${link}' target='_blank'>${item.url}</a>`;
+    }
+    if (item.details) content += `<br>${item.details}`;
+    if (item.desc) content += `<br><i>Tip: ${item.desc}</i>`;
+    return content;
+}
+
+// 1. Conference Venues (Keeping as Permanent Labels/Tooltips)
 venues.forEach(function (venue) {
     L.marker([venue.lat, venue.lon], { icon: createAwesomeMarker('circle', 'red') })
-        .bindTooltip(`<b>${venue.name}</b>`, { permanent: true, direction: 'top', offset: [0, -20], opacity: 0.75 })
+        .bindTooltip(`<b>${venue.name}</b>`, { permanent: true, direction: 'top', offset: [0, -20], opacity: 0.8 })
         .addTo(venueLayer);
 });
 
-// Add transport nodes
+// 2. Transport (Popups)
 transport.forEach(function (node) {
-    var marker = L.marker([node.lat, node.lon], { icon: createAwesomeMarker('bus', 'cadetblue') })
-    if (node.details === undefined) {
-        marker.bindTooltip(`<b>${node.name}</b>`);
-    } else {
-        marker.bindTooltip(`<b>${node.name}</b><br>${node.details}`);
-    };
-    marker.addTo(transportLayer);
+    L.marker([node.lat, node.lon], { icon: createAwesomeMarker('bus', 'cadetblue') })
+        .bindPopup(buildContent(node), { className: 'transparent-popup', closeButton: false })
+        .addTo(transportLayer);
 });
 
-// Add hotels
+// 3. Sightseeing (Popups)
+sightseeing.forEach(function (landmark) {
+    L.marker([landmark.lat, landmark.lon], { icon: createAwesomeMarker('landmark', 'green') })
+        .bindPopup(buildContent(landmark), { className: 'transparent-popup', closeButton: false })
+        .addTo(sightseeingLayer);
+});
+
+// 4. Hotels (Popups)
 hotels.forEach(function (hotel) {
     L.marker([hotel.lat, hotel.lon], { icon: createAwesomeMarker('bed', 'darkblue') })
-        .bindTooltip(`<b>${hotel.name}</b><br><a href='${hotel.url}' target='_blank'>${hotel.url}</a>`)
+        .bindPopup(buildContent(hotel), { className: 'transparent-popup', closeButton: false })
         .addTo(hotelsLayer);
 });
 
-// Add restaurants
+// 5. Restaurants (Popups)
 restaurants.forEach(function (restaurant) {
-    var marker = L.marker([restaurant.lat, restaurant.lon], { icon: createAwesomeMarker('utensils', 'darkpurple') })
-    if (restaurant.desc === undefined) {
-        marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a>`);
-    } else {
-        marker.bindTooltip(`<b>${restaurant.name}</b><br><a href='${restaurant.url}' target='_blank'>${restaurant.url}</a><br>Tip from locals: ${restaurant.desc}`);
-    };
-    marker.addTo(restaurantsLayer);
+    L.marker([restaurant.lat, restaurant.lon], { icon: createAwesomeMarker('utensils', 'darkpurple') })
+        .bindPopup(buildContent(restaurant), { className: 'transparent-popup', closeButton: false })
+        .addTo(restaurantsLayer);
 });
 
-// Add cafes
+// 6. Cafes (Popups)
 cafes.forEach(function (cafe) {
-    var marker = L.marker([cafe.lat, cafe.lon], { icon: createAwesomeMarker('mug-saucer', 'purple') })
-    if (cafe.desc === undefined) {
-        marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a>`);
-    } else {
-        marker.bindTooltip(`<b>${cafe.name}</b><br><a href='${cafe.url}' target='_blank'>${cafe.url}</a><br>Tip from locals: ${cafe.desc}`);
-    };
-    marker.addTo(cafesLayer);
+    L.marker([cafe.lat, cafe.lon], { icon: createAwesomeMarker('mug-saucer', 'purple') })
+        .bindPopup(buildContent(cafe), { className: 'transparent-popup', closeButton: false })
+        .addTo(cafesLayer);
 });
 
-// Add pubs
+// 7. Pubs (Popups)
 pubs.forEach(function (pub) {
-    var marker = L.marker([pub.lat, pub.lon], { icon: createAwesomeMarker('beer-mug-empty', 'orange') })
-    if (pub.desc === undefined) {
-        marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a>`);
-    } else {
-        marker.bindTooltip(`<b>${pub.name}</b><br><a href='${pub.url}' target='_blank'>${pub.url}</a><br>Tip from locals: ${pub.desc}`);
-    };
-    marker.addTo(pubsLayer);
+    L.marker([pub.lat, pub.lon], { icon: createAwesomeMarker('beer-mug-empty', 'orange') })
+        .bindPopup(buildContent(pub), { className: 'transparent-popup', closeButton: false })
+        .addTo(pubsLayer);
 });
 
-
-// Add layer control and set initial visibility based on URL parameters
+// --- URL Parameter Logic ---
 function getUrlParams() {
     const params = new URLSearchParams(window.location.search);
     return params.get('layers') ? params.get('layers').split(',') : [];
 }
 
 var activeLayers = getUrlParams();
-
-// Enable only selected layers based on URL parameters
 if (activeLayers.includes("hotels")) hotelsLayer.addTo(map);
 if (activeLayers.includes("restaurants")) restaurantsLayer.addTo(map);
 if (activeLayers.includes("pubs")) pubsLayer.addTo(map);
 if (activeLayers.includes("transport")) transportLayer.addTo(map);
+if (activeLayers.includes("sightseeing")) sightseeingLayer.addTo(map);
 if (activeLayers.includes("venue")) venueLayer.addTo(map);
 if (activeLayers.includes("cafes")) cafesLayer.addTo(map);
-
 
 // Layer control
 var overlayMaps = {
@@ -184,6 +194,7 @@ var overlayMaps = {
     "Restaurants": restaurantsLayer,
     "Pubs": pubsLayer,
     "Cafes": cafesLayer,
+    "Sightseeing": sightseeingLayer,
     "Transport": transportLayer
 };
 
